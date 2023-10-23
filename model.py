@@ -47,12 +47,6 @@ def loss_plot(lo):
     """
     return lo.plot()
 
-# Define a function to save the model architecture as an image file
-def plo_model(mo):
-    """
-    Saves the model architecture as an image file.
-    """
-    plot_model(mo, to_file='model.png', show_shapes=True)
 
 # Load MNIST dataset and preprocess it
 (x_train, y_train), (x_test, y_test) = mnist.load_data()
@@ -89,8 +83,6 @@ predictions = (model.predict(x_test) > 0.5).astype('int32')
 cm = plot_classification_results(y_test_cat, predictions, classes)
 # Plot the loss curve
 los = loss_plot(loss)
-# Save the model architecture as an image file
-plo = plo_model(model)
 
 # Calculate accuracy score
 acc = accuracy(y_test_cat, predictions)
@@ -101,4 +93,4 @@ clas = classification(y_test_cat, predictions)
 # Print accuracy score and write metrics to a file
 print(f'\naccuracy_score = {acc}')
 with open('metrics.txt', 'w') as outfile:
-    outfile.write(f'\naccuracy_score = {acc}, classification_report = {clas}, loss_plot = {los}, plot_model = {plo}')
+    outfile.write(f'\naccuracy_score = {acc}, classification_report = {clas}, loss_plot = {los}')
