@@ -33,19 +33,16 @@ def accuracy(y_test, y_pred):
     """
     return accuracy_score(y_test, y_pred)
 
-# Define a function to calculate classification_report between y_test and y_preds
-def classification(y_test, y_pred):
-    """
-    Calculates classification_report between y_test and y_preds.
-    """
-    return classification_report(y_test.argmax(axis=1), y_pred.argmax(axis=1))
 
 # Define a function to plot the loss curve
 def loss_plot(lo):
     """
     Plots the loss curve using the data provided.
     """
-    return lo.plot()
+    lo.plot()
+    
+    plt.savefig('loss.png', dpi=120)
+
 
 
 # Load MNIST dataset and preprocess it
@@ -79,18 +76,10 @@ loss = pd.DataFrame(model.history.history)
 # Make predictions using the test data
 predictions = (model.predict(x_test) > 0.5).astype('int32')
 
-# Plot the confusion matrix
-cm = plot_classification_results(y_test_cat, predictions, classes)
-# Plot the loss curve
-los = loss_plot(loss)
-
 # Calculate accuracy score
 acc = accuracy(y_test_cat, predictions)
-
-# Calculate classification report
-clas = classification(y_test_cat, predictions)
 
 # Print accuracy score and write metrics to a file
 print(f'\naccuracy_score = {acc}')
 with open('metrics.txt', 'w') as outfile:
-    outfile.write(f'\naccuracy_score = {acc}, classification_report = {clas}, loss_plot = {los}')
+    outfile.write(f'\naccuracy_score = {acc})
