@@ -11,7 +11,7 @@ from sklearn.metrics import accuracy_score, classification_report, ConfusionMatr
 from tensorflow.keras.utils import plot_model
 
 # Define a function to plot confusion matrix for classification results
-def plot_classification_results(test_labels, predictions, classes):
+def plot_classification_results(test_labels, predictions, classes,save_path='confusion_matrix.png'):
     """
     Plots confusion matrix for classification results.
     """
@@ -23,7 +23,9 @@ def plot_classification_results(test_labels, predictions, classes):
     disp.plot(cmap=plt.cm.Blues, values_format='.0f')
 
     # Optionally, save the plot as an image file
-    plt.savefig('confusion_matrix.png', dpi=120)
+    plt.savefig(save_path, dpi=120)
+    plt.close() 
+               
     
 
 # Define a function to calculate accuracy_score between y_test and y_preds
@@ -35,13 +37,13 @@ def accuracy(y_test, y_pred):
 
 
 # Define a function to plot the loss curve
-def loss_plot(lo):
+def loss_plot(lo,save_path='loss.png'):
     """
     Plots the loss curve using the data provided.
     """
-    lo.plot()
-    
-    plt.savefig('loss.png', dpi=120)
+    loss.plot()
+    plt.savefig(save_path, dpi=120)
+    plt.close() 
 
 
 
@@ -75,6 +77,9 @@ loss = pd.DataFrame(model.history.history)
 
 # Make predictions using the test data
 predictions = (model.predict(x_test) > 0.5).astype('int32')
+
+plot_classification_results(y_test_cat, predictions, classes,save_path='confusion_matrix.png')
+loss_plot(loss,save_path='loss.png')
 
 # Calculate accuracy score
 acc = accuracy(y_test_cat, predictions)
