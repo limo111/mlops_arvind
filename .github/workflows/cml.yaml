@@ -14,3 +14,18 @@ jobs:
           # Your ML workflow goes here
           pip install -r requirements.txt
           python model.py
+
+          echo "## Model Metrics" > report.md
+          cat metrics.txt >> report.md
+          
+          echo "\n## confusion matrix" >> report.md
+          echo "Confusion Matrix metrics are on the plot below." >> report.md
+          
+          cml-publish confusion_matrix.png --md >> report.md
+
+          echo "\n## model metrics" >> report.md
+          echo "model metrics are on the plot below." >> report.md
+          
+          cml-publish loss.png --md >> report.md
+          
+          cml-send-comment report.md
