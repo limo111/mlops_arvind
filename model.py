@@ -82,4 +82,4 @@ acc = accuracy(y_test_cat, predictions)
 # Print accuracy score and write metrics to a file
 print(f'\naccuracy_score = {acc}')
 with open('metrics.txt', 'w') as outfile:
-    outfile.write(f'\naccuracy_score = {acc})
+    outfile.write(f'\naccuracy_score = {acc}')
