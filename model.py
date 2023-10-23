@@ -16,8 +16,15 @@ def plot_classification_results(test_labels, predictions, classes):
     Plots confusion matrix for classification results.
     """
     # Calculate confusion matrix and create a ConfusionMatrixDisplay object
-    cm = ConfusionMatrixDisplay.from_predictions(y_test_cat.argmax(axis=1), predictions.argmax(axis=1))
-    return cm
+    cm = confusion_matrix(y_test_cat.argmax(axis=1), predictions.argmax(axis=1))
+    
+    # Display the confusion matrix using ConfusionMatrixDisplay
+    disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=classes)
+    disp.plot(cmap=plt.cm.Blues, values_format='.0f')
+
+    # Optionally, save the plot as an image file
+    plt.savefig('confusion_matrix.png', dpi=120)
+    plt.show()
 
 # Define a function to calculate accuracy_score between y_test and y_preds
 def accuracy(y_test, y_pred):
