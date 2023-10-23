@@ -7,7 +7,7 @@ from tensorflow.keras.utils import to_categorical
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Conv2D, MaxPool2D, Flatten, Dense
 from tensorflow.keras.callbacks import EarlyStopping
-from sklearn.metrics import accuracy_score, classification_report, ConfusionMatrixDisplay
+from sklearn.metrics import accuracy_score, classification_report, ConfusionMatrixDisplay,confusion_matrix
 from tensorflow.keras.utils import plot_model
 
 # Define a function to plot confusion matrix for classification results
