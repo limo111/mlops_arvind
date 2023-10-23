@@ -24,7 +24,7 @@ def plot_classification_results(test_labels, predictions, classes):
 
     # Optionally, save the plot as an image file
     plt.savefig('confusion_matrix.png', dpi=120)
-    plt.show()
+    
 
 # Define a function to calculate accuracy_score between y_test and y_preds
 def accuracy(y_test, y_pred):
